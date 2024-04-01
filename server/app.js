@@ -5,9 +5,15 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const quotable = require('./QuotableAPI');
 dotenv.config();
-
+const cors = require('cors');
+app.use(cors());
 const expressServer = app.listen(3001);
-const io = socketio(expressServer);
+const io = require('socket.io')(5000, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST'],
+    },
+});
 
 const Game = require('./Models/Game');
 
