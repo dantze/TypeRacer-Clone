@@ -24,6 +24,27 @@ mongoose.connect(process.env.MONGO_URI,
 
 
 io.on('connect', (socket) => {
+
+    socket.on('join-game', async ({gameID: _id, nickName}) => {
+        try{
+            let game = await Game.findById(_id);
+            if(game.isOpen){
+                const gameID = game._id.toString();
+                socket.join(gameID);
+                let player = {
+                    socketID: socket.id,
+                    isPartyLeader: false,
+                    nickName
+                }
+                game.players.push(player);
+                game = await game.save();   
+                io.to(gameID).emit('updatGame', game);
+            }
+        }catch(err){
+            console.log(err);
+        }
+    });
+
     socket.on('create-game', async (nickName) => {
         try{
             const quotableData = await quotable.randomQuote();

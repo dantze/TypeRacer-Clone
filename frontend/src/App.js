@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react';
 import history from './history';
 import GameMenu from './components/GameMenu';
 import CreateGame from './components/CreateGame';
+import JoinGame from './components/JoinGame';
 import './index.css'
 import socket from './socketConfig'
 
@@ -13,6 +14,7 @@ function App() {
     socket.on('updatGame', game => {
       console.log(game);
       setGameState(game);
+      history.push(`/game/${game._id}`);
     })
     return () => {
       socket.removeAllListeners();
@@ -24,6 +26,7 @@ function App() {
         <Routes>
           <Route path = '/' Component = {GameMenu} />
           <Route path = '/game/create' Component = {CreateGame} />
+          <Route path = '/game/join' Component = {JoinGame} />
         </Routes>
       </Router>
   );
