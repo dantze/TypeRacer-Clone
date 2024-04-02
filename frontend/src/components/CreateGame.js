@@ -18,15 +18,18 @@ const CreateGame = props => {
             <text className = 'text-2xl pb-2'>
                 Create Game
             </text>
-        <form className = "flex flex-col" onSubmit = {onSubmit}>
-            <text className = "">Enter Nick Name</text>
-            <input type = "text" name = "nickName" className = "border-2" value = {nickName} onChange = {onChange} placeholder='enter..'></input>
-            
-            <button   className = "absolute mt-14 h-[40px] w-[130px] rounded-lg bg-blue-500"><text className = "p-4 text-white">Join Game</text></button>
+        <form className = "flex flex-col pt-2" onSubmit = {onSubmit}>
+            <text className = "pb-2">Enter Nick Name</text>
+            <input style={inputStyle} type = "text" name = "nickName" className = "pl-2 w-[400px] h-[38px] border-gray-600 border-[3px] rounded-xl p-[1px]" value = {nickName} onChange = {onChange} placeholder='John Stone'></input>
+            <button   className = "absolute mt-20 h-[40px] w-[130px] rounded-lg bg-blue-500"><text className = "p-4 text-white">Join Game</text></button>
         </form>
            
         </div>
     )
+}
+
+const inputStyle = {
+    outline: 'none',
 }
 
 export default CreateGame;
