@@ -14,10 +14,10 @@ const CountDown = props => {
     const {countDown, msg} = timer;
     return (
         <>
-            <h1>
+            <h1 className = "text-3xl pt-11">
                 {countDown}
             </h1>
-            <h3>
+            <h3 className = "text-3xl">
                 {msg}
             </h3>
         </>

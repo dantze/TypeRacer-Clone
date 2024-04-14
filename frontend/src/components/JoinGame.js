@@ -12,7 +12,10 @@ const JoinGame = props => {
         e.preventDefault();
         socket.emit('join-game', userInput);
         console.log(userInput); 
-        navigate(`/game/${userInput.gameID}`);
+        setInterval(() => {
+            navigate(`/game/${userInput.gameID}`);
+            return;
+        }, 1000);
     }
     return (
         <div className = "w-full h-full flex flex-col items-center justify-center mt-8">

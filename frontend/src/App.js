@@ -15,7 +15,7 @@ function App() {
     socket.on('updateGame', game => {
       console.log(game);
       setGameState(game);
-      history.push(`/game/${game._id}`);
+      //history.push(`/game/${game._id}`);
     })
     return () => {
       socket.removeAllListeners();
