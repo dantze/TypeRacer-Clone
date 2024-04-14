@@ -12,7 +12,7 @@ function App() {
   //const navigate = useNavigate();
   const [gameState, setGameState] = useState({_id : "", isOpen : false, players: [], words: []});
   useEffect(() =>{
-    socket.on('updatGame', game => {
+    socket.on('updateGame', game => {
       console.log(game);
       setGameState(game);
       history.push(`/game/${game._id}`);

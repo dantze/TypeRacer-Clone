@@ -10,8 +10,14 @@ const CreateGame = props => {
     }
     const onSubmit = e => {
         e.preventDefault();
-        socket.emit('create-game', nickName);
-        navigate('/game/gameID');
+        socket.emit('create-game', nickName, (response) => {
+            console.log(response);
+            if(response.status === 'success') {
+                navigate(`/game/${response.gameID}`);
+            }
+        
+        });
+        //navigate('/game/gameID');
     }
     return (
         <div className = "w-full h-full flex flex-col items-center justify-center mt-8">

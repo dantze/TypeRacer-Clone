@@ -17,7 +17,11 @@ const TypeRacer = ({gameState}) => {
     return (
         <div className = "w-full h-full text-center">
             <CountDown />
-            <StartBtn player = {player} gameID = {_id}/>
+            {
+                gameState.isOpen &&
+                <StartBtn player = {player} gameID = {_id}/>
+            }
+            
         </div>
     )
 }

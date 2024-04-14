@@ -59,15 +59,17 @@ io.on('connect', (socket) => {
                 }
                 game.players.push(player);
                 game = await game.save();   
-                io.to(gameID).emit('updatGame', game);
+                io.to(gameID).emit('updateGame', game);
             }
         }catch(err){
             console.log(err);
         }
     });
 
-    socket.on('create-game', async (nickName) => {
+    socket.on('create-game', async (nickName, callback) => {
+        callback = typeof callback == "function" ? callback : () => {};
         try{
+            
             const quotableData = await quotable.randomQuote();
             let game = new Game();
             game.words = quotableData;
@@ -80,8 +82,11 @@ io.on('connect', (socket) => {
             game = await game.save();
 
             const gameID = game._id.toString();
+
+            callback({status: 'success', gameID});
+
             socket.join(gameID);
-            io.to(gameID).emit('updatGame', game);
+            io.to(gameID).emit('updateGame', game);
         }catch(err){
             console.log(err);
         }
@@ -90,10 +95,10 @@ io.on('connect', (socket) => {
 
 const startGameClock = async(gameID) => {
     let game = await Game.findById(gameID);
-    game.startTime = newDate().getTime();
+    game.startTime = new Date().getTime();
     game = await game.save();
     let time = 120;
-    
+
     let timerID = setInterval(function gameIntervalFunc(){
         if(time >= 0){
             const formatTime = calculateTime(time);
@@ -106,7 +111,7 @@ const startGameClock = async(gameID) => {
                 let game = await Game.findById(gameID);
                 let {startTime} = game;
                 game.isOver = true;
-                game.players.forEach((players, index) => {
+                game.players.forEach((player, index) => {
                     if(player.WPM === -1)
                         game.players[index].WPM = calculateWPM(endTime, startTime, player);
                 })
@@ -116,7 +121,7 @@ const startGameClock = async(gameID) => {
             })();
 
         }
-        return gameInteravalFunc;
+        return gameIntervalFunc;
     }(), 1000);
 }
 
