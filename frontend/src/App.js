@@ -6,6 +6,7 @@ import CreateGame from './components/CreateGame';
 import JoinGame from './components/JoinGame';
 import './index.css'
 import socket from './socketConfig'
+import TypeRacer from './components/TypeRacer';
 
 function App() {
   //const navigate = useNavigate();
@@ -27,6 +28,13 @@ function App() {
           <Route path = '/' Component = {GameMenu} />
           <Route path = '/game/create' Component = {CreateGame} />
           <Route path = '/game/join' Component = {JoinGame} />
+          <Route path = '/game/:gameID' Component = {props => 
+              <TypeRacer
+                {...props}
+                gameState = {gameState}
+              />
+            }
+          />
         </Routes>
       </Router>
   );
