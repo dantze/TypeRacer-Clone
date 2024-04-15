@@ -5,6 +5,7 @@ async function randomQuote() {
     // Output the quote and author name
     console.log(quote.content)
     console.log(`- ${quote.author}`)
+    return quote.content;
   }
 
 module.exports = { randomQuote };

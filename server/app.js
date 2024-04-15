@@ -72,7 +72,7 @@ io.on('connect', (socket) => {
             
             const quotableData = await quotable.randomQuote();
             let game = new Game();
-            game.words = quotableData;
+            game.words.push(quotableData);
             let player = {
                 socketID: socket.id,
                 isPartyLeader: true,
@@ -80,7 +80,7 @@ io.on('connect', (socket) => {
             }
             game.players.push(player);
             game = await game.save();
-
+            console.log(game);
             const gameID = game._id.toString();
 
             callback({status: 'success', gameID});

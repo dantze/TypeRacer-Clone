@@ -11,6 +11,7 @@ import TypeRacer from './components/TypeRacer';
 function App() {
   //const navigate = useNavigate();
   const [gameState, setGameState] = useState({_id : "", isOpen : false, players: [], words: []});
+  console.log(gameState);
   useEffect(() =>{
     socket.on('updateGame', game => {
       console.log(game);
@@ -21,6 +22,7 @@ function App() {
       socket.removeAllListeners();
     }
     }, []);
+
   
   return (
       <Router history = {history}>
