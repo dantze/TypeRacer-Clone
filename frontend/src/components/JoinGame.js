@@ -20,11 +20,11 @@ const JoinGame = props => {
     return (
         <div className = "w-full h-full flex flex-col items-center justify-center mt-8">
             <text className = 'text-2xl pb-2'>
-                Join Game
+                Intrare Joc
             </text>
         <form className = "flex flex-col pt-2" onSubmit = {onSubmit}>
 
-            <text className = "pl-1 pb-1">Enter Game ID</text>
+            <text className = "pl-1 pb-1">Scrie ID Joc</text>
             <input 
             style={inputStyle}
             name = "gameID"
@@ -34,7 +34,7 @@ const JoinGame = props => {
             value = {userInput.gameID}
             placeholder='enter game id'></input>
             
-            <text className = "pl-1 pb-1 mt-2">Enter Nick Name</text>
+            <text className = "pl-1 pb-1 mt-2">Scrie Nume</text>
             <input 
             style={inputStyle}
             name='nickName'
@@ -44,7 +44,7 @@ const JoinGame = props => {
             value = {userInput.nickName} 
             placeholder='John Stone'></input>
             
-            <button className = "absolute mt-40 h-[40px] w-[130px] rounded-lg bg-blue-500"><text className = "p-4 text-white">Join Game</text></button>
+            <button className = "absolute mt-40 h-[40px] w-[130px] rounded-lg bg-blue-500"><text className = "p-4 text-white">Intrare Joc</text></button>
         </form>
            
         </div>

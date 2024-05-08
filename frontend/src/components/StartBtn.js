@@ -17,7 +17,7 @@ const StartBtn = ({player, gameID}) => {
                 type = "button"
                 onClick = {onClickHandler} 
                 className = "bg-blue-500 text-white p-2 rounded-lg">
-                Start Game
+                Start Joc
                 </button>
         </div>
         : null
