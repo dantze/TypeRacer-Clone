@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
 import socket from '../socketConfig';
 
 const Form = ({isOpen, isOver, gameID}) => {
@@ -15,17 +15,15 @@ const Form = ({isOpen, isOver, gameID}) => {
         setUserInput("");
     }
 
-    const onChange = e => {
+    const onChange = useCallback((e) => {
         let value = e.target.value;
         let lastChar = value.charAt(value.length - 1);
         if(lastChar === " "){
             socket.emit('userInput', {userInput, gameID});
             resetForm();
         }
-        else
-            setUserInput(e.target.value);
-
-    }
+        setUserInput(e.target.value);
+    }, [userInput])
 
     return (
         <div className = "grid-row my-3">

@@ -34,6 +34,7 @@ function App() {
               <TypeRacer
                 {...props}
                 gameState = {gameState}
+                shouldRenderCountDown={true}
               />
             }
           />

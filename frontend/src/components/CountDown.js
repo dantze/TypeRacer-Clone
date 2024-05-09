@@ -1,24 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo, useLayoutEffect} from 'react';
 import socket from '../socketConfig';
 
 const CountDown = props => {
-    const [timer, setTimer] = useState({countDown: "", msg: ""});
-    useEffect(() => {
-        socket.on('timer', data => {
-            setTimer(data);
-        })
-        socket.on('done', () => {
-            socket.removeListener('timer');
-        })
-    }, [])
-    const {countDown, msg} = timer;
+    
     return (
         <>
             <h1 className = "text-3xl pt-11">
-                {countDown}
+                {props.countDown}
             </h1>
             <h3 className = "text-3xl">
-                {msg}
+                {props.msg}
             </h3>
         </>
     )
