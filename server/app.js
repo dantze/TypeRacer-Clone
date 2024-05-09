@@ -36,7 +36,7 @@ io.on('connect', (socket) => {
                     if(player.currentWordIndex !== game.words.length){
                         game = await game.save();
                         io.to(gameID).emit('updateGame', game);
-                        
+
                     }
                     else{
                         let endTime = new Date().getTime();
@@ -126,7 +126,7 @@ const startGameClock = async(gameID) => {
     let game = await Game.findById(gameID);
     game.startTime = new Date().getTime();
     game = await game.save();
-    let time = 120;
+    let time = 20;
 
     let timerID = setInterval(function gameIntervalFunc(){
         if(time >= 0){
