@@ -1,4 +1,4 @@
-import {Routes, Route, BrowserRouter as Router, useNavigate} from 'react-router-dom';
+import {Routes, Route, HashRouter as Router, useNavigate} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import history from './history';
 import GameMenu from './components/GameMenu';
@@ -7,6 +7,7 @@ import JoinGame from './components/JoinGame';
 import './index.css'
 import socket from './socketConfig'
 import TypeRacer from './components/TypeRacer';
+import { isElectron } from './util';
 
 function App() {
   //const navigate = useNavigate();

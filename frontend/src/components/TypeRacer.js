@@ -38,8 +38,10 @@ const TypeRacer = ({gameState, shouldRenderCountDown}) => {
             <DisplayWords words = {words} player = {player} />
             <ProgressBar players = {players}  player = {player} wordsLength = {words.length} />
             <Form isOpen = {isOpen} isOver = {isOver} gameID = {_id}/>
-            <CountDown countDown = {timer.countDown} msg = {timer.msg}/>
-            
+            {
+                gameState.isOpen && 
+                <CountDown countDown = {timer.countDown} msg = {timer.msg}/>
+            } 
             {
                 gameState.isOpen &&
                 <StartBtn player = {player} gameID = {_id}/>

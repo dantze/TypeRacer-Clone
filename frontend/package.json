@@ -2,11 +2,14 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "main": "electron/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
+    "electron-is": "^3.0.0",
     "history": "^5.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -14,13 +17,17 @@
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.7.5",
     "socket.io-frontend": "^0.0.2",
+    "wait-on": "^7.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=/ react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "build-electron": "react-scripts build",
+    "electron-build": "npm run build-electron && electron-builder build --publish never"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +48,22 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.3"
+    "tailwindcss": "^3.4.3",
+    "electron": "^30.0.3",
+    "electron-builder": "^24.13.3"
+  },
+  "homepage": "./",
+  "build": {
+    "appId": "com.app.id",
+    "productName": "React Electron App",
+    "files": [
+      "build/**/*",
+      "electron/main.js",
+      "package.json"
+    ],
+    "extends": null,
+    "mac": {
+      "type": "distribution"
+    }
   }
 }
